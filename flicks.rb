@@ -20,14 +20,29 @@ class Movie
   end
 
   def to_s
-    "#{@title} has a normalized rank of #{normalized_rank}"
+    "#{@title} has a rank of #{@rank}"
   end
 end
 
-movie1 = Movie.new "goonies", 100
-movie1.thumbs_up
-puts movie1
-movie1.title = "Goonies 2.0"
-puts movie1.title
-puts movie1.rank
-puts movie1.normalized_rank
+movie1 = Movie.new "goonies", 10
+movie2 = Movie.new "ghostbusters", 9
+movie3 = Movie.new "goldfinger"
+
+# Two ways: Array.now or []
+movies = Array.new
+
+# Two ways: push or <<
+movies.push movie1
+movies << movie2
+movies.push movie3
+
+puts movies
+
+movies.each do |movie|
+  movie.thumbs_up
+  puts movie
+end
+
+puts movies.pop
+puts movies.pop
+puts movies.pop
