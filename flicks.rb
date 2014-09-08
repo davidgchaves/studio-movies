@@ -24,25 +24,39 @@ class Movie
   end
 end
 
+class Playlist
+  def initialize(name)
+    @name = name
+    @movies = []
+  end
+
+  def add_movie(movie)
+    @movies.push movie
+  end
+
+  def play
+    puts "#{@name}'s playlist:"
+    puts @movies
+
+    @movies.each do |movie|
+      movie.thumbs_up
+      puts movie
+    end
+  end
+end
+
 movie1 = Movie.new "goonies", 10
 movie2 = Movie.new "ghostbusters", 9
 movie3 = Movie.new "goldfinger"
+movie4 = Movie.new "gremlins", 15
 
-# Two ways: Array.now or []
-movies = Array.new
+playlist1 = Playlist.new "Kermit"
+playlist1.add_movie movie1
+playlist1.add_movie movie2
+playlist1.add_movie movie3
+playlist1.play
 
-# Two ways: push or <<
-movies.push movie1
-movies << movie2
-movies.push movie3
-
-puts movies
-
-movies.each do |movie|
-  movie.thumbs_up
-  puts movie
-end
-
-puts movies.pop
-puts movies.pop
-puts movies.pop
+playlist2 = Playlist.new "Fozzie"
+playlist2.add_movie movie3
+playlist2.add_movie movie4
+playlist2.play
