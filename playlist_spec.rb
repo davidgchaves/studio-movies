@@ -14,7 +14,7 @@ describe Playlist do
     end
 
     it "thumbs up the movie if a high number is rolled" do
-      allow(@playlist).to receive(:roll_die) { 5 }
+      allow(WaldorfAndStatler).to receive(:roll_die) { 5 }
 
       @playlist.play
 
@@ -22,7 +22,7 @@ describe Playlist do
     end
 
     it "skips the movie if a medium number is rolled" do
-      allow(@playlist).to receive(:roll_die) { 3 }
+      allow(WaldorfAndStatler).to receive(:roll_die) { 3 }
 
       @playlist.play
 
@@ -30,7 +30,7 @@ describe Playlist do
     end
 
     it "thumbs down the movie if a low number is rolled" do
-      allow(@playlist).to receive(:roll_die) { 1 }
+      allow(WaldorfAndStatler).to receive(:roll_die) { 1 }
 
       @playlist.play
 
