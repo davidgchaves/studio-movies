@@ -8,6 +8,10 @@ class Movie
     @snack_carbs = Hash.new 0
   end
 
+  def each_snack
+    @snack_carbs.each { |name, carbs| yield Snack.new name, carbs }
+  end
+
   def carbs_consumed
     @snack_carbs.values.reduce 0, :+
   end
