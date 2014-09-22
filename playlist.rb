@@ -8,6 +8,16 @@ class Playlist
     @movies = []
   end
 
+  def load(from_file)
+    File.readlines(from_file).each { |line| add_movie Movie.from_csv line }
+  end
+
+  def save(to_file="movie_rankings.csv")
+    File.open(to_file, "w") do |file|
+      @movies.sort.each { |m| file.puts m.to_csv }
+    end
+  end
+
   def add_movie(movie)
     @movies.push movie
   end
