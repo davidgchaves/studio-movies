@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require_relative '../lib/flicks/playlist'
 require_relative '../lib/flicks/movie3d'
 
