@@ -1,40 +1,42 @@
 require_relative 'playlist'
 
-describe Playlist do
-  before do
-    $stdout = StringIO.new      #supress (redirect) the standard output
-    @playlist = Playlist.new "Kermit"
-  end
-
-  context "being played with one movie" do
+module Flicks
+  describe Playlist do
     before do
-      @initial_rank = 10
-      @movie = Movie.new "Goonies", @initial_rank
-      @playlist.add_movie @movie
+      $stdout = StringIO.new      #supress (redirect) the standard output
+      @playlist = Playlist.new "Kermit"
     end
 
-    it "thumbs up the movie if a high number is rolled" do
-      allow(WaldorfAndStatler).to receive(:roll_die) { 5 }
+    context "being played with one movie" do
+      before do
+        @initial_rank = 10
+        @movie = Movie.new "Goonies", @initial_rank
+        @playlist.add_movie @movie
+      end
 
-      @playlist.play 1
+      it "thumbs up the movie if a high number is rolled" do
+        allow(WaldorfAndStatler).to receive(:roll_die) { 5 }
 
-      expect(@movie.rank).to eq @initial_rank + 1
-    end
+        @playlist.play 1
 
-    it "skips the movie if a medium number is rolled" do
-      allow(WaldorfAndStatler).to receive(:roll_die) { 3 }
+        expect(@movie.rank).to eq @initial_rank + 1
+      end
 
-      @playlist.play 1
+      it "skips the movie if a medium number is rolled" do
+        allow(WaldorfAndStatler).to receive(:roll_die) { 3 }
 
-      expect(@movie.rank).to eq @initial_rank
-    end
+        @playlist.play 1
 
-    it "thumbs down the movie if a low number is rolled" do
-      allow(WaldorfAndStatler).to receive(:roll_die) { 1 }
+        expect(@movie.rank).to eq @initial_rank
+      end
 
-      @playlist.play 1
+      it "thumbs down the movie if a low number is rolled" do
+        allow(WaldorfAndStatler).to receive(:roll_die) { 1 }
 
-      expect(@movie.rank).to eq @initial_rank - 1
+        @playlist.play 1
+
+        expect(@movie.rank).to eq @initial_rank - 1
+      end
     end
   end
 end
