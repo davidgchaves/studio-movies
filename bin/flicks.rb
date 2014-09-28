@@ -1,8 +1,9 @@
-require_relative 'playlist'
-require_relative 'movie3d'
+require_relative '../lib/flicks/playlist'
+require_relative '../lib/flicks/movie3d'
 
 playlist = Flicks::Playlist.new "Kermit"
-playlist.load ARGV.shift || "movies.csv"
+default_movie_file = File.join File.dirname(__FILE__), 'movies.csv'
+playlist.load ARGV.shift || default_movie_file
 movie3d = Flicks::Movie3D.new "glee", 5, 20
 playlist.add_movie movie3d
 

@@ -1,4 +1,4 @@
-require_relative 'movie'
+require_relative '../../lib/flicks/movie'
 
 module Flicks
   describe Movie do
